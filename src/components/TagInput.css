@@ -1,0 +1,55 @@
+.tag-input {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 8px;
+  background: white;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.tag {
+  background-color: #007bff;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 15px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.tag-remove {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 0;
+  line-height: 1;
+}
+
+.tag-remove:hover {
+  opacity: 0.7;
+}
+
+.tag-input-field {
+  border: none;
+  outline: none;
+  padding: 4px 8px;
+  flex: 1;
+  min-width: 120px;
+  font-size: 14px;
+}
+
+.tag-hint {
+  display: block;
+  margin-top: 5px;
+  color: #666;
+  font-size: 12px;
+}
