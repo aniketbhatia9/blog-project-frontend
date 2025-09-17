@@ -1,10 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from '../lib/api';
+import './Home.css';
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const formatDate = (dateString) => {
+    return new Date(dateString).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    });
+  };
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -36,23 +45,25 @@ const Home = () => {
           <div className="posts-grid">
             {posts.map((post) => (
               <article key={post.id} className="post-card">
-                <h2>
+                <div className="post-card-content">
+                <h2 className='post-card-title'>
                   <Link to={`/post/${post.slug}`}>{post.title}</Link>
                 </h2>
                 
-                <div className="post-meta">
+                <div className="post-card-meta">
                   <span>By {post.profiles?.full_name || post.profiles?.username}</span>
-                  <span>{new Date(post.created_at).toLocaleDateString()}</span>
+                  <span className="post-date">{formatDate(post.created_at)}</span>
+                  {/* <span>{new Date(post.created_at).toLocaleDateString()}</span> */}
                 </div>
                 
                 {post.excerpt && (
-                  <p className="post-excerpt">{post.excerpt}</p>
+                  <p className="post-card-excerpt">{post.excerpt}</p>
                 )}
                 
                 {post.post_tags?.length > 0 && (
-                  <div className="post-tags">
+                  <div className="post-card-tags">
                     {post.post_tags.map((tagRelation, index) => (
-                      <span key={index} className="tag">
+                      <span key={index} className="tag-small">
                         {tagRelation.tags.name}
                       </span>
                     ))}
@@ -62,6 +73,7 @@ const Home = () => {
                 <Link to={`/post/${post.slug}`} className="read-more">
                   Read more →
                 </Link>
+                </div>
               </article>
             ))}
           </div>

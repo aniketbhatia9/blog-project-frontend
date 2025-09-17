@@ -1,0 +1,138 @@
+.home h1 {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #2c3e50;
+  font-size: 2.5rem;
+}
+
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.post-card-content{
+    padding: 25px;
+}
+
+@media (max-width: 768px) {
+  .posts-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .post-card-content {
+    padding: 20px;
+  }
+  
+  .post-title {
+    font-size: 2rem;
+  }
+  
+  .navbar .nav-container {
+    padding: 0 15px;
+  }
+  
+  .nav-links {
+    gap: 10px;
+  }
+  
+  .nav-link {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+  
+  .container {
+    padding: 0 15px;
+  }
+  
+  .post-form {
+    padding: 20px;
+  }
+  
+  .auth-form {
+    padding: 30px 20px;
+  }
+  
+  .profile-info {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+  
+  .profile-avatar {
+    width: 100px;
+    height: 100px;
+    align-self: center;
+  }
+  
+  .post-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .post-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .buttons {
+    width: 100%;
+    justify-content: stretch;
+  }
+  
+  .buttons .btn {
+    flex: 1;
+  }
+  
+  .search-bar {
+    max-width: 100%;
+  }
+  
+  .editor-header {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  
+  .toolbar {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .post-title {
+    font-size: 1.75rem;
+  }
+  
+  .home h1 {
+    font-size: 2rem;
+  }
+  
+  .nav-logo {
+    font-size: 20px;
+  }
+  
+  .post-card-title a {
+    font-size: 1.1rem;
+  }
+  
+  .pagination {
+    flex-wrap: wrap;
+    gap: 3px;
+  }
+  
+  .pagination-button {
+    min-width: 35px;
+    height: 35px;
+    padding: 6px 8px;
+    font-size: 13px;
+  }
+}

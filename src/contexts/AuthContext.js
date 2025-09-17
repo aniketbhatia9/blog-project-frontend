@@ -48,6 +48,7 @@ export const AuthProvider = ({ children }) => {
       email,
       password
     });
+    console.log(data.session.access_token);
     return { data, error };
   };
 

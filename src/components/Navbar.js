@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import './Navbar.css';
 
 const Navbar = () => {
   const { user, signOut } = useAuth();
@@ -15,7 +16,7 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="nav-container">
         <Link to="/" className="nav-logo">
-          My Blog
+          Echoes & Ideas
         </Link>
         
         <div className="nav-links">
