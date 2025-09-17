@@ -22,10 +22,18 @@ const Profile = () => {
     const fetchProfile = async () => {
       try {
         setLoading(true);
-        // In a real app, you'd fetch by username, but for simplicity using user ID
-        const profileData = await dataService.getProfile(user?.id);
-        const userPosts = await dataService.getUserPosts(user?.id);
-        
+        console.log("username from URL:", username);
+
+        // Fetch profile by username
+        const profileData = await dataService.getProfile(username);
+        console.log("Fetched profile data:", profileData);
+
+        // Fetch posts by that profile’s ID
+        let userPosts = [];
+        if (profileData?.id) {
+          userPosts = await dataService.getUserPosts(profileData.id);
+        }
+
         setProfile(profileData);
         setPosts(userPosts);
         setEditForm({
@@ -34,20 +42,20 @@ const Profile = () => {
           avatar_url: profileData.avatar_url || ''
         });
       } catch (error) {
-        console.error('Error fetching profile:', error);
+        console.error("Error fetching profile:", error);
       } finally {
         setLoading(false);
       }
     };
 
-    if (user) {
+    if (username) {
       fetchProfile();
     }
-  }, [username, user]);
+  }, [username]);
 
   const handleEditSubmit = async (e) => {
     e.preventDefault();
-    
+
     try {
       const updatedProfile = await dataService.updateProfile(user.id, editForm);
       setProfile(updatedProfile);
@@ -74,7 +82,7 @@ const Profile = () => {
                 className="profile-avatar"
               />
             )}
-            
+
             <div className="profile-details">
               {editing ? (
                 <form onSubmit={handleEditSubmit} className="edit-profile-form">
@@ -82,19 +90,19 @@ const Profile = () => {
                     type="text"
                     placeholder="Full Name"
                     value={editForm.full_name}
-                    onChange={(e) => setEditForm({...editForm, full_name: e.target.value})}
+                    onChange={(e) => setEditForm({ ...editForm, full_name: e.target.value })}
                   />
                   <textarea
                     placeholder="Bio"
                     value={editForm.bio}
-                    onChange={(e) => setEditForm({...editForm, bio: e.target.value})}
+                    onChange={(e) => setEditForm({ ...editForm, bio: e.target.value })}
                     rows="3"
                   />
                   <input
                     type="url"
                     placeholder="Avatar URL"
                     value={editForm.avatar_url}
-                    onChange={(e) => setEditForm({...editForm, avatar_url: e.target.value})}
+                    onChange={(e) => setEditForm({ ...editForm, avatar_url: e.target.value })}
                   />
                   <div className="form-buttons">
                     <button type="submit" className="btn btn-primary">Save</button>
@@ -108,7 +116,7 @@ const Profile = () => {
                   <h1>{profile.full_name || profile.username}</h1>
                   <p className="username">@{profile.username}</p>
                   {profile.bio && <p className="bio">{profile.bio}</p>}
-                  
+
                   {isOwnProfile && (
                     <button onClick={() => setEditing(true)} className="btn btn-secondary">
                       Edit Profile
@@ -122,7 +130,7 @@ const Profile = () => {
 
         <div className="profile-content">
           <h2>{isOwnProfile ? 'Your Posts' : `Posts by ${profile.username}`}</h2>
-          
+
           {posts.length === 0 ? (
             <p>No posts yet.</p>
           ) : (

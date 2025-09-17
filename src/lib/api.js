@@ -1,4 +1,4 @@
-const API_BASE = 'http://localhost:8000/api';
+const API_BASE = 'http://192.168.43.166:8000/api';
 
 const getAuthHeaders = () => {
   const token = localStorage.getItem('supabase.auth.token');

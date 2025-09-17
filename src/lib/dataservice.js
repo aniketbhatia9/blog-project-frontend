@@ -369,15 +369,21 @@ class DataService {
   }
 
   // PROFILES - Use Supabase DataAPI
-  async getProfile(userId) {
+  async getProfile(username) {
     const { data, error } = await supabase
       .from('profiles')
       .select('*')
-      .eq('id', userId)
+      .eq('username', username.toLowerCase().trim())
       .single();
 
-    if (error) throw error;
-    return data;
+    if (error) {
+    if (error.code === 'PGRST116') {
+      // No rows returned
+      return null;
+    }
+    throw error;
+  }
+  return data;
   }
 
   async getProfileByUsername(username) {
@@ -388,6 +394,7 @@ class DataService {
       .single();
 
     if (error) throw error;
+    console.log('Fetched profile by username:', data);
     return data;
   }
 
