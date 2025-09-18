@@ -1,6 +1,6 @@
 import { supabase } from './supabase';
 
-const API_BASE = 'http://localhost:8000/api';
+const API_BASE = 'https://fastapi-jq9o.onrender.com/api';
 
 class DataService {
   // Get auth headers for FastAPI calls
